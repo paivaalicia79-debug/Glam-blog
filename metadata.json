@@ -1,0 +1,7 @@
+{
+  "name": "L'ÉCLAT Beauty Journal",
+  "description": "An editorial beauty journal and guide to the art of makeup, skin prep, shade selection, color theory, and contemporary cosmetic artistry.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

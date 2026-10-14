@@ -1,0 +1,494 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Fredoka', 'Quicksand', cursive, sans-serif;
+  --font-body: 'Quicksand', system-ui, -apple-system, sans-serif;
+  --font-hand: 'Caveat', cursive;
+}
+
+:root,
+[data-theme="strawberry"] {
+  --color-accent: #ff2a85;
+  --color-accent-hover: #e0176f;
+  --color-accent-light: #fff0f6;
+  --color-accent-subtle: #ffe4f0;
+  --color-accent-border: #f472b6;
+  --color-accent-shadow: #ff2a85;
+  --color-accent-gradient-start: #ff2a85;
+  --color-accent-gradient-end: #ff69b4;
+  --theme-bg-dot: #ffb6d9;
+  --theme-bg-subdot: #ffd6eb;
+  --theme-bg-base: #fff0f6;
+  --theme-text-title: #ff1493;
+  --theme-scrollbar-thumb: #ff69b4;
+  --theme-scrollbar-hover: #ff1493;
+  --color-accent-rgb: 255, 42, 133;
+  --glow-halo-color: rgba(255, 42, 133, 0.45);
+  --glow-halo-secondary: rgba(255, 105, 180, 0.3);
+}
+
+[data-theme="blueberry"] {
+  --color-accent: #0284c7;
+  --color-accent-hover: #0369a1;
+  --color-accent-light: #f0f9ff;
+  --color-accent-subtle: #e0f2fe;
+  --color-accent-border: #38bdf8;
+  --color-accent-shadow: #0284c7;
+  --color-accent-gradient-start: #0284c7;
+  --color-accent-gradient-end: #38bdf8;
+  --theme-bg-dot: #bae6fd;
+  --theme-bg-subdot: #e0f2fe;
+  --theme-bg-base: #f0f9ff;
+  --theme-text-title: #0284c7;
+  --theme-scrollbar-thumb: #38bdf8;
+  --theme-scrollbar-hover: #0284c7;
+  --color-accent-rgb: 2, 132, 199;
+  --glow-halo-color: rgba(2, 132, 199, 0.5);
+  --glow-halo-secondary: rgba(56, 189, 248, 0.35);
+}
+
+[data-theme="grape"] {
+  --color-accent: #9333ea;
+  --color-accent-hover: #7e22ce;
+  --color-accent-light: #faf5ff;
+  --color-accent-subtle: #f3e8ff;
+  --color-accent-border: #c084fc;
+  --color-accent-shadow: #9333ea;
+  --color-accent-gradient-start: #9333ea;
+  --color-accent-gradient-end: #c084fc;
+  --theme-bg-dot: #e9d5ff;
+  --theme-bg-subdot: #f3e8ff;
+  --theme-bg-base: #faf5ff;
+  --theme-text-title: #9333ea;
+  --theme-scrollbar-thumb: #c084fc;
+  --theme-scrollbar-hover: #9333ea;
+  --color-accent-rgb: 147, 51, 234;
+  --glow-halo-color: rgba(147, 51, 234, 0.5);
+  --glow-halo-secondary: rgba(192, 132, 252, 0.35);
+}
+
+@layer base {
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: #38152c;
+    background-color: var(--theme-bg-base);
+    background-image: 
+      radial-gradient(var(--theme-bg-dot) 1px, transparent 1px),
+      radial-gradient(var(--theme-bg-subdot) 1px, var(--theme-bg-base) 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    transition: background-color 0.3s ease, background-image 0.3s ease;
+  }
+
+  h1, h2, h3, h4, .font-bubbly {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  .font-handwriting {
+    font-family: var(--font-hand);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Y2K Fun Sticker Shadows (Theme Responsive) */
+.shadow-sticker {
+  box-shadow: 4px 4px 0px var(--color-accent, #ff2a85);
+  transition: box-shadow 0.25s ease;
+}
+
+.shadow-sticker-purple {
+  box-shadow: 4px 4px 0px #a855f7;
+}
+
+.shadow-sticker-blue {
+  box-shadow: 4px 4px 0px #38bdf8;
+}
+
+.shadow-sticker-sm {
+  box-shadow: 2px 2px 0px var(--color-accent, #ff2a85);
+  transition: box-shadow 0.25s ease;
+}
+
+.shadow-bubble {
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Theme utility classes */
+.theme-accent-bg {
+  background-color: var(--color-accent) !important;
+}
+
+.theme-accent-hover-bg:hover {
+  background-color: var(--color-accent-hover) !important;
+}
+
+.theme-accent-text {
+  color: var(--color-accent) !important;
+}
+
+.theme-accent-border {
+  border-color: var(--color-accent) !important;
+}
+
+.theme-accent-subtle-border {
+  border-color: var(--color-accent-border) !important;
+}
+
+.theme-subtle-bg {
+  background-color: var(--color-accent-subtle) !important;
+}
+
+.theme-gradient-bg {
+  background-image: linear-gradient(135deg, var(--color-accent-gradient-start), var(--color-accent-gradient-end)) !important;
+}
+
+/* Glossy highlight effect for Y2K buttons */
+.glossy-button {
+  background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.06) 100%);
+}
+
+/* Sparkle keyframes */
+@keyframes float-sparkle {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  50% { transform: translateY(-6px) rotate(12deg) scale(1.1); }
+}
+
+.animate-sparkle {
+  animation: float-sparkle 3s ease-in-out infinite;
+}
+
+/* Continuous Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* =========================================================
+   WHOLE-BLOG DYNAMIC THEME TRANSFORMATION
+   When Blueberry or Grape theme is selected, transform
+   all pink/strawberry accents across every component!
+   ========================================================= */
+
+/* --- BLUEBERRY BLUE THEME OVERRIDES --- */
+[data-theme="blueberry"] .text-\[\#FF1493\],
+[data-theme="blueberry"] .text-\[\#FF2A85\],
+[data-theme="blueberry"] .text-pink-600,
+[data-theme="blueberry"] .text-pink-500,
+[data-theme="blueberry"] .text-pink-700 {
+  color: #0284c7 !important;
+}
+
+[data-theme="blueberry"] .text-pink-800,
+[data-theme="blueberry"] .text-pink-900 {
+  color: #075985 !important;
+}
+
+[data-theme="blueberry"] .bg-\[\#FF2A85\],
+[data-theme="blueberry"] .bg-\[\#FF1493\],
+[data-theme="blueberry"] .bg-pink-500,
+[data-theme="blueberry"] .bg-pink-600 {
+  background-color: #0284c7 !important;
+}
+
+[data-theme="blueberry"] .hover\:bg-\[\#E0176F\]:hover,
+[data-theme="blueberry"] .hover\:bg-pink-600:hover,
+[data-theme="blueberry"] .hover\:bg-pink-700:hover {
+  background-color: #0369a1 !important;
+}
+
+[data-theme="blueberry"] .border-\[\#FF2A85\],
+[data-theme="blueberry"] .border-\[\#FF1493\],
+[data-theme="blueberry"] .border-pink-500,
+[data-theme="blueberry"] .border-pink-600 {
+  border-color: #0284c7 !important;
+}
+
+[data-theme="blueberry"] .border-pink-300,
+[data-theme="blueberry"] .border-pink-400 {
+  border-color: #38bdf8 !important;
+}
+
+[data-theme="blueberry"] .border-pink-200,
+[data-theme="blueberry"] .border-pink-100 {
+  border-color: #bae6fd !important;
+}
+
+[data-theme="blueberry"] .bg-pink-50,
+[data-theme="blueberry"] .bg-\[\#FFF0F5\],
+[data-theme="blueberry"] .bg-\[\#FFF0F6\],
+[data-theme="blueberry"] .bg-\[\#FFF5F8\] {
+  background-color: #f0f9ff !important;
+}
+
+[data-theme="blueberry"] .bg-pink-100,
+[data-theme="blueberry"] .bg-pink-200,
+[data-theme="blueberry"] .bg-\[\#FFE4EE\] {
+  background-color: #e0f2fe !important;
+}
+
+[data-theme="blueberry"] .hover\:bg-pink-50:hover,
+[data-theme="blueberry"] .hover\:bg-pink-100:hover,
+[data-theme="blueberry"] .hover\:bg-\[\#FFE4EE\]:hover {
+  background-color: #e0f2fe !important;
+}
+
+[data-theme="blueberry"] .from-\[\#FF2A85\] {
+  --tw-gradient-from: #0284c7 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(2 132 199 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #38bdf8 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+[data-theme="blueberry"] .to-\[\#FF69B4\],
+[data-theme="blueberry"] .to-\[\#FF1493\] {
+  --tw-gradient-to: #38bdf8 var(--tw-gradient-to-position) !important;
+}
+
+[data-theme="blueberry"] .from-\[\#FFE4EE\] {
+  --tw-gradient-from: #e0f2fe var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(224 242 254 / 0) var(--tw-gradient-to-position) !important;
+}
+
+[data-theme="blueberry"] .via-\[\#FFF0F5\] {
+  --tw-gradient-via: #f0f9ff var(--tw-gradient-via-position) !important;
+}
+
+[data-theme="blueberry"] .to-\[\#FFF0F5\] {
+  --tw-gradient-to: #f0f9ff var(--tw-gradient-to-position) !important;
+}
+
+[data-theme="blueberry"] .ring-pink-300,
+[data-theme="blueberry"] .ring-pink-400 {
+  --tw-ring-color: #7dd3fc !important;
+}
+
+[data-theme="blueberry"] ::selection {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+/* --- GRAPE PURPLE THEME OVERRIDES --- */
+[data-theme="grape"] .text-\[\#FF1493\],
+[data-theme="grape"] .text-\[\#FF2A85\],
+[data-theme="grape"] .text-pink-600,
+[data-theme="grape"] .text-pink-500,
+[data-theme="grape"] .text-pink-700 {
+  color: #9333ea !important;
+}
+
+[data-theme="grape"] .text-pink-800,
+[data-theme="grape"] .text-pink-900 {
+  color: #6b21a8 !important;
+}
+
+[data-theme="grape"] .bg-\[\#FF2A85\],
+[data-theme="grape"] .bg-\[\#FF1493\],
+[data-theme="grape"] .bg-pink-500,
+[data-theme="grape"] .bg-pink-600 {
+  background-color: #9333ea !important;
+}
+
+[data-theme="grape"] .hover\:bg-\[\#E0176F\]:hover,
+[data-theme="grape"] .hover\:bg-pink-600:hover,
+[data-theme="grape"] .hover\:bg-pink-700:hover {
+  background-color: #7e22ce !important;
+}
+
+[data-theme="grape"] .border-\[\#FF2A85\],
+[data-theme="grape"] .border-\[\#FF1493\],
+[data-theme="grape"] .border-pink-500,
+[data-theme="grape"] .border-pink-600 {
+  border-color: #9333ea !important;
+}
+
+[data-theme="grape"] .border-pink-300,
+[data-theme="grape"] .border-pink-400 {
+  border-color: #c084fc !important;
+}
+
+[data-theme="grape"] .border-pink-200,
+[data-theme="grape"] .border-pink-100 {
+  border-color: #e9d5ff !important;
+}
+
+[data-theme="grape"] .bg-pink-50,
+[data-theme="grape"] .bg-\[\#FFF0F5\],
+[data-theme="grape"] .bg-\[\#FFF0F6\],
+[data-theme="grape"] .bg-\[\#FFF5F8\] {
+  background-color: #faf5ff !important;
+}
+
+[data-theme="grape"] .bg-pink-100,
+[data-theme="grape"] .bg-pink-200,
+[data-theme="grape"] .bg-\[\#FFE4EE\] {
+  background-color: #f3e8ff !important;
+}
+
+[data-theme="grape"] .hover\:bg-pink-50:hover,
+[data-theme="grape"] .hover\:bg-pink-100:hover,
+[data-theme="grape"] .hover\:bg-\[\#FFE4EE\]:hover {
+  background-color: #f3e8ff !important;
+}
+
+[data-theme="grape"] .from-\[\#FF2A85\] {
+  --tw-gradient-from: #9333ea var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(147 51 234 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #c084fc var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+[data-theme="grape"] .to-\[\#FF69B4\],
+[data-theme="grape"] .to-\[\#FF1493\] {
+  --tw-gradient-to: #c084fc var(--tw-gradient-to-position) !important;
+}
+
+[data-theme="grape"] .from-\[\#FFE4EE\] {
+  --tw-gradient-from: #f3e8ff var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(243 232 255 / 0) var(--tw-gradient-to-position) !important;
+}
+
+[data-theme="grape"] .via-\[\#FFF0F5\] {
+  --tw-gradient-via: #faf5ff var(--tw-gradient-via-position) !important;
+}
+
+[data-theme="grape"] .to-\[\#FFF0F5\] {
+  --tw-gradient-to: #faf5ff var(--tw-gradient-to-position) !important;
+}
+
+[data-theme="grape"] .ring-pink-300,
+[data-theme="grape"] .ring-pink-400 {
+  --tw-ring-color: #d8b4fe !important;
+}
+
+[data-theme="grape"] ::selection {
+  background-color: #9333ea !important;
+  color: #ffffff !important;
+}
+
+/* Cute scrollbar (theme responsive) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-accent-subtle, #ffe4f0);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-scrollbar-thumb, #ff69b4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-scrollbar-hover, #ff1493);
+}
+
+/* =========================================================
+   DEWY Y2K GLOW MODE
+   Animated subtle outer-glow on cards, stickers, and buttons
+   ========================================================= */
+
+@keyframes dewy-card-glow {
+  0%, 100% {
+    box-shadow: 
+      4px 4px 0px var(--color-accent, #ff2a85),
+      0 0 16px 2px var(--glow-halo-color),
+      0 0 26px 4px var(--glow-halo-secondary);
+  }
+  50% {
+    box-shadow: 
+      4px 4px 0px var(--color-accent, #ff2a85),
+      0 0 24px 6px var(--glow-halo-color),
+      0 0 38px 8px var(--glow-halo-secondary),
+      0 0 50px 12px rgba(255, 255, 255, 0.45);
+  }
+}
+
+@keyframes dewy-button-glow {
+  0%, 100% {
+    box-shadow: 
+      2px 2px 0px var(--color-accent, #ff2a85),
+      0 0 10px 2px var(--glow-halo-color);
+  }
+  50% {
+    box-shadow: 
+      2px 2px 0px var(--color-accent, #ff2a85),
+      0 0 18px 5px var(--glow-halo-color),
+      0 0 28px 7px var(--glow-halo-secondary);
+  }
+}
+
+@keyframes dewy-indicator-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px #fde047);
+  }
+}
+
+/* Applied when Glow Mode is toggled ON */
+[data-glow="true"] .shadow-sticker {
+  animation: dewy-card-glow 3.6s ease-in-out infinite !important;
+}
+
+[data-glow="true"] .shadow-sticker-sm {
+  animation: dewy-button-glow 2.8s ease-in-out infinite !important;
+}
+
+[data-glow="true"] button.shadow-sticker,
+[data-glow="true"] button.shadow-sticker-sm,
+[data-glow="true"] a.shadow-sticker,
+[data-glow="true"] a.shadow-sticker-sm {
+  animation: dewy-button-glow 2.4s ease-in-out infinite !important;
+}
+
+[data-glow="true"] article {
+  animation: dewy-card-glow 3.4s ease-in-out infinite !important;
+  transition: transform 0.25s ease, box-shadow 0.3s ease !important;
+}
+
+[data-glow="true"] .animate-dewy-pulse {
+  animation: dewy-indicator-pulse 2s ease-in-out infinite !important;
+}
