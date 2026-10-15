@@ -7,13 +7,15 @@ interface Y2KHeroProps {
   onGRWMClick: () => void;
   onLipSpinnerClick: () => void;
   onOpenAudioPlayer: () => void;
+  onProfileClick?: () => void;
 }
 
 export const Y2KHero: React.FC<Y2KHeroProps> = ({
   onExploreClick,
   onGRWMClick,
   onLipSpinnerClick,
-  onOpenAudioPlayer
+  onOpenAudioPlayer,
+  onProfileClick,
 }) => {
   return (
     <section className="relative overflow-hidden pt-6 sm:pt-10 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-10 xl:px-16 bg-gradient-to-b from-[#FFE4EE] via-[#FFF0F5] to-[#FFF0F5] border-b-3 border-[#FF2A85]">
@@ -91,6 +93,15 @@ export const Y2KHero: React.FC<Y2KHeroProps> = ({
               <Dices className="w-4 h-4 text-[#FF2A85]" />
               <span>Spin Lip Combo 💋</span>
             </button>
+
+            {onProfileClick && (
+              <button
+                onClick={onProfileClick}
+                className="inline-flex items-center gap-1.5 px-4 py-3.5 rounded-full bg-[#E9D5FF] hover:bg-[#D8B4FE] text-[#581C87] font-bold text-xs border-2 border-purple-400 shadow-sticker-sm cursor-pointer transition-transform hover:scale-104"
+              >
+                <span>🧖‍♀️ 10-Min Glow Prep</span>
+              </button>
+            )}
           </div>
 
         </div>

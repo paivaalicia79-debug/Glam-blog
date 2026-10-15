@@ -87,6 +87,9 @@ export const Y2KFooter: React.FC<Y2KFooterProps> = ({ onSelectTab, onOpenLipSpin
                 <button onClick={() => onSelectTab('blog')} className="hover:text-[#FF1493] cursor-pointer">All 10 Blog Entries 📖</button>
               </li>
               <li>
+                <button onClick={() => onSelectTab('profile')} className="hover:text-[#FF1493] cursor-pointer">My Profile & Glow-Up Timer 🧖‍♀️</button>
+              </li>
+              <li>
                 <button onClick={() => onSelectTab('calendar')} className="hover:text-[#FF1493] cursor-pointer">Beauty Calendar 🗓️</button>
               </li>
               <li>

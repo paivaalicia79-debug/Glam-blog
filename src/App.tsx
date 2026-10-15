@@ -25,6 +25,8 @@ import { MoodSelector } from './components/MoodSelector';
 import { GlamWishlistDrawer } from './components/GlamWishlistDrawer';
 import { CardStickerModal } from './components/CardStickerModal';
 import { StickerToolbar } from './components/StickerToolbar';
+import { Y2KUserProfile } from './components/Y2KUserProfile';
+import { GlowUpSkinPrepTimer } from './components/GlowUpSkinPrepTimer';
 import { ColorTheme } from './types/theme';
 import { ArticleStampsMap, StampId } from './types/stamps';
 import { WishlistItem } from './types/blog';
@@ -263,6 +265,7 @@ export default function App() {
   const [isBookmarksOpen, setIsBookmarksOpen] = useState<boolean>(false);
   const [isLipSpinnerOpen, setIsLipSpinnerOpen] = useState<boolean>(false);
   const [isAudioPlayerOpen, setIsAudioPlayerOpen] = useState<boolean>(true);
+  const [isFloatingTimer, setIsFloatingTimer] = useState<boolean>(false);
 
   // Glam Wishlist / Shopping Basket State in localStorage
   const [wishlist, setWishlist] = useState<WishlistItem[]>(() => {
@@ -428,7 +431,7 @@ export default function App() {
       }
 
       // Check for direct tab route
-      const knownTabs = ['home', 'blog', 'calendar', 'tips', 'faves', 'grwm', 'looks'];
+      const knownTabs = ['home', 'blog', 'profile', 'calendar', 'tips', 'faves', 'grwm', 'looks'];
       if (knownTabs.includes(hash)) {
         setSelectedArticle(null);
         setActiveTab(hash);
@@ -602,6 +605,7 @@ export default function App() {
                   onGRWMClick={() => handleSelectTab('grwm')}
                   onLipSpinnerClick={() => setIsLipSpinnerOpen(true)}
                   onOpenAudioPlayer={() => setIsAudioPlayerOpen(true)}
+                  onProfileClick={() => handleSelectTab('profile')}
                 />
 
                 {/* Daily Beauty Dilemma Poll */}
@@ -792,6 +796,25 @@ export default function App() {
               </main>
             )}
 
+            {/* PROFILE & GLOW-UP SKIN PREP TIMER TAB */}
+            {activeTab === 'profile' && (
+              <main className="space-y-8 pb-16">
+                <Y2KUserProfile
+                  onSelectTab={handleSelectTab}
+                  isFloatingTimer={isFloatingTimer}
+                  onToggleFloatingTimer={() => setIsFloatingTimer(!isFloatingTimer)}
+                  onOpenArticleByTopic={(topic) => {
+                    const match = BLOG_ARTICLES.find(
+                      (a) =>
+                        a.title.toLowerCase().includes(topic.toLowerCase()) ||
+                        a.category.toLowerCase().includes(topic.toLowerCase())
+                    );
+                    if (match) handleOpenArticle(match);
+                  }}
+                />
+              </main>
+            )}
+
             {/* CALENDAR TAB */}
             {activeTab === 'calendar' && (
               <main className="space-y-8 pb-16">
@@ -906,6 +929,14 @@ export default function App() {
           article={stickerModalArticle}
           stickers={cardDecorations[stickerModalArticle.id] || []}
           onSaveStickers={handleSaveCardStickers}
+        />
+      )}
+
+      {/* Floating 10-Minute Skin Prep Vanity Dock Widget */}
+      {isFloatingTimer && activeTab !== 'profile' && (
+        <GlowUpSkinPrepTimer
+          isFloating={true}
+          onToggleFloating={() => setIsFloatingTimer(false)}
         />
       )}
 

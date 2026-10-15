@@ -1,5 +1,6 @@
 export type StampId =
   | 'slay_approved'
+  | 'diva_approved'
   | 'holy_grail'
   | 'juicy_kiss'
   | 'strawberry_crush'

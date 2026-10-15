@@ -139,6 +139,7 @@ export const Y2KHeader: React.FC<Y2KHeaderProps> = ({
           {[
             { id: 'home', label: 'Home 🏠' },
             { id: 'blog', label: 'Beauty Diary 📖' },
+            { id: 'profile', label: 'My Profile 🧖‍♀️' },
             { id: 'calendar', label: 'Beauty Calendar 🗓️' },
             { id: 'tips', label: 'Makeup Tips 💡' },
             { id: 'faves', label: 'My Faves 💖' },
@@ -271,6 +272,7 @@ export const Y2KHeader: React.FC<Y2KHeaderProps> = ({
         {[
           { id: 'home', label: 'Home 🏠' },
           { id: 'blog', label: 'Diary 📖' },
+          { id: 'profile', label: 'Profile 🧖‍♀️' },
           { id: 'calendar', label: 'Calendar 🗓️' },
           { id: 'tips', label: 'Tips 💡' },
           { id: 'faves', label: 'Faves 💖' },
